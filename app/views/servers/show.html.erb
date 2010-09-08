@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @server.name %></h2>
+<%=raw display_attributes(@server) %>
+
+<%= link_to 'Edit', edit_server_path(@server) %> |
+<%= link_to 'Back', servers_path %>
