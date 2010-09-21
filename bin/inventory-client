@@ -3,16 +3,18 @@
 require 'rubygems'
 require 'rest_client'
 require 'json'
+require 'facter'
+Facter.loadfacts
 
 SERVER_URL = "http://localhost:3000"
 
 hostname = `hostname`.strip
-print "Adding #{hostname}..."
+facts = Facter.to_hash.merge({:name => hostname})
 
 begin
-  response = RestClient.post "#{SERVER_URL}/servers.json", :server => {:name => hostname}, :content_type => 'application/json', :accept => :json
+  print "Adding #{hostname}..."
+  response = RestClient.post "#{SERVER_URL}/servers.json", :server => facts, :content_type => 'application/json', :accept => :json
   puts "done"
-  puts response
 rescue Exception => e
   puts "error"
   puts e
