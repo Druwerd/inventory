@@ -1,6 +1,7 @@
 class ServersController < ApplicationController
   
   respond_to :html, :xml, :json
+  skip_before_filter :verify_authenticity_token
   
   # GET /servers
   # GET /servers.xml
@@ -28,7 +29,8 @@ class ServersController < ApplicationController
   # POST /servers
   # POST /servers.xml
   def create
-    respond_with(@server = Server.create(params[:server]))
+    @server = Server.update_inventory(params[:server])
+    respond_with(@server)
   end
 
   # PUT /servers/1
