@@ -10,6 +10,7 @@ SERVER_URL = "http://localhost:3000"
 
 hostname = `hostname`.strip
 facts = Facter.to_hash.merge({:name => hostname})
+facts.delete("id") # id must be set by mongo mapper not Facter
 
 begin
   print "Adding #{hostname}..."
