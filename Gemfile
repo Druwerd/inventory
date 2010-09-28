@@ -6,6 +6,7 @@ gem 'rails', '3.0.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mongo_mapper'
+gem 'PageRankr', :require => 'page_rankr'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -1,5 +1,9 @@
 Inventory::Application.routes.draw do
+  resources :sites
+  match 'sites/update_page_rank/:id', :to => 'sites#update_page_rank', :via => 'post'
+
   resources :servers
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
