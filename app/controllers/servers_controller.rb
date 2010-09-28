@@ -6,7 +6,7 @@ class ServersController < ApplicationController
   # GET /servers
   # GET /servers.xml
   def index
-    respond_with(@servers = Server.all(:order => 'name'))
+    respond_with(@servers = Server.all(:order => 'fqdn'))
   end
 
   # GET /servers/1
