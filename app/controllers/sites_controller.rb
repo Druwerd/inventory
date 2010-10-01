@@ -1,35 +1,23 @@
 class SitesController < ApplicationController
+  
+  respond_to :html, :xml, :json
+  
   # GET /sites
   # GET /sites.xml
   def index
-    @sites = Site.all(:order => 'name')
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @sites }
-    end
+    respond_with(@sites = Site.all(:order => 'name'))
   end
 
   # GET /sites/1
   # GET /sites/1.xml
   def show
-    @site = Site.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @site }
-    end
+    respond_with(@site = Site.find(params[:id]))
   end
 
   # GET /sites/new
   # GET /sites/new.xml
   def new
-    @site = Site.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @site }
-    end
+    respond_with(@site = Site.new)
   end
 
   # GET /sites/1/edit
@@ -41,46 +29,22 @@ class SitesController < ApplicationController
   # POST /sites.xml
   def create
     @site = Site.new(params[:site])
-
-    respond_to do |format|
-      if @site.save
-        format.html { redirect_to(@site, :notice => 'Site was successfully created.') }
-        format.xml  { render :xml => @site, :status => :created, :location => @site }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = "Site was successfully created." if @site.save
+    respond_with(@site)
   end
 
   # PUT /sites/1
   # PUT /sites/1.xml
   def update
     @site = Site.find(params[:id])
-
-    respond_to do |format|
-      if @site.update_attributes(params[:site])
-        format.html { redirect_to(@site, :notice => 'Site was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = "Site was successfully updated." if @site.update_attributes(params[:site])
+    respond_with(@site)
   end
   
   def update_page_rank
     @site = Site.find(params[:id])
-    
-    respond_to do |format|
-      if @site.save()
-        format.html { redirect_to(@site, :notice => 'Page Rank was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = "Page Rank was successfully updated." if @site.save
+    respond_with(@site)
   end
 
   # DELETE /sites/1
@@ -92,6 +56,7 @@ class SitesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(sites_url) }
       format.xml  { head :ok }
+      format.json { head :ok }
     end
   end
 end

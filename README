@@ -12,7 +12,7 @@ Inventory system for tracking computer systems.
 
 == Getting Started
 
-1. mongod # start mongodb 
+1. /path-to-mongodb/bin/mongod # start mongodb 
 
 2. git clone git://github.com/Druwerd/inventory.git # checkout source code
 

@@ -13,7 +13,7 @@
 <% @sites.each do |site| %>
   <tr>
     <td><%= site.name %></td>
-	<td><%= site.page_rank %></td>
+	<td><%= show_page_rank(site) %></td>
 	<td><%= link_to 'Update Page Rank', {:id => site.id, :action => 'update_page_rank'}, :method => :post %></td>
     <td><%= link_to 'Show', site %></td>
     <td><%= link_to 'Edit', edit_site_path(site) %></td>
