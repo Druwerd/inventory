@@ -17,7 +17,7 @@
     <td><%= site.name %></td>
 	<td><%= show_page_rank(site) %></td>
 	<td><%= site.load_time %></td>
-	<td><%= site.updated_at %></td>
+	<td><%= site.updated_at.strftime("%Y-%m-%d") %></td>
 	<!-->
 	<td><%= link_to 'Update Page Rank', {:id => site.id, :action => 'update_page_rank'}, :method => :post %></td>
     <td><%= link_to 'Show', site %></td>

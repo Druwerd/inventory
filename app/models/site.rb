@@ -4,7 +4,7 @@ class Site
   key :name, String, :unique => true, :required => true
   key :page_rank, String
   key :load_time, String
-  key :updated_at, Date
+  key :updated_at, Time
   
   before_save :get_page_rank, :get_page_load_time, :update_timestamp
   
