@@ -5,6 +5,7 @@
     <th>Name</th>
 	<th>Page Rank</th>
 	<th>Load Time</th>
+	<th>Last Updated</th>
 	<th></th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
     <td><%= site.name %></td>
 	<td><%= show_page_rank(site) %></td>
 	<td><%= site.load_time %></td>
+	<td><%= site.updated_at %></td>
 	<!-->
 	<td><%= link_to 'Update Page Rank', {:id => site.id, :action => 'update_page_rank'}, :method => :post %></td>
     <td><%= link_to 'Show', site %></td>

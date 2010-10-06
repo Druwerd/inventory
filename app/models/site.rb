@@ -4,8 +4,13 @@ class Site
   key :name, String, :unique => true, :required => true
   key :page_rank, String
   key :load_time, String
+  key :updated_at, Date
   
-  before_save :get_page_rank, :get_page_load_time
+  before_save :get_page_rank, :get_page_load_time, :update_timestamp
+  
+  def update_timestamp
+    self.updated_at = Time.now
+  end
   
   def get_page_rank()
     self.page_rank = PageRankr.ranks(self.name)[:google]
