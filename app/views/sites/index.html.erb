@@ -1,9 +1,10 @@
 <h1>Listing sites</h1>
-
+<%= link_to 'New Site', new_site_path %>
 <table>
   <tr>
     <th>Name</th>
 	<th>Page Rank</th>
+	<th>Load Time</th>
 	<th></th>
     <th></th>
     <th></th>
@@ -14,14 +15,13 @@
   <tr>
     <td><%= site.name %></td>
 	<td><%= show_page_rank(site) %></td>
+	<td><%= site.load_time %></td>
+	<!-->
 	<td><%= link_to 'Update Page Rank', {:id => site.id, :action => 'update_page_rank'}, :method => :post %></td>
     <td><%= link_to 'Show', site %></td>
     <td><%= link_to 'Edit', edit_site_path(site) %></td>
     <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
+	-->
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Site', new_site_path %>
