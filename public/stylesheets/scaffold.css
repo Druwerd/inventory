@@ -54,3 +54,15 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+table{
+	border: 1px solid;
+}
+
+tr.even {
+  background-color: #ddeeff;
+}
+
+tr.odd {
+  background-color: #eeeeee;
+}

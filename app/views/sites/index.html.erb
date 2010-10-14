@@ -7,13 +7,14 @@
 	<th>Last Updated</th>
   </tr>
 <% @reference_sites.each do |site| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd") %>">
     <td><%= site.name %></td>
 	<td><%= show_page_rank(site) %></td>
 	<td><%= site.load_time %></td>
 	<td><%= site.updated_at.strftime("%Y-%m-%d") %></td>
   </tr>
 <% end %>
+<% reset_cycle() %>
 </table>
 
 <h2>GN Sites</h2>
@@ -24,19 +25,15 @@
 	<th>Page Rank</th>
 	<th>Load Time</th>
 	<th>Last Updated</th>
-	<th></th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @sites.each do |site| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd") %>">
     <td><%= site.name %></td>
 	<td><%= show_page_rank(site) %></td>
 	<td><%= site.load_time %></td>
 	<td><%= site.updated_at.strftime("%Y-%m-%d") %></td>
-	<!-->
+	<!--
 	<td><%= link_to 'Update Page Rank', {:id => site.id, :action => 'update_page_rank'}, :method => :post %></td>
     <td><%= link_to 'Show', site %></td>
     <td><%= link_to 'Edit', edit_site_path(site) %></td>
