@@ -1,4 +1,22 @@
-<h1>Listing sites</h1>
+<h2>Reference Sites</h2>
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Page Rank</th>
+	<th>Load Time</th>
+	<th>Last Updated</th>
+  </tr>
+<% @reference_sites.each do |site| %>
+  <tr>
+    <td><%= site.name %></td>
+	<td><%= show_page_rank(site) %></td>
+	<td><%= site.load_time %></td>
+	<td><%= site.updated_at.strftime("%Y-%m-%d") %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>GN Sites</h2>
 <%= link_to 'New Site', new_site_path %>
 <table>
   <tr>

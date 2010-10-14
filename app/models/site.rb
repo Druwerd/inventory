@@ -5,8 +5,17 @@ class Site
   key :page_rank, String
   key :load_time, String
   key :updated_at, Time
+  key :reference, Boolean
   
-  before_save :get_page_rank, :get_page_load_time, :update_timestamp
+  before_save :get_page_rank, :get_page_load_time, :update_timestamp, :set_reference, :strip_name
+  
+  def strip_name
+    self.name = self.name.strip
+  end
+  
+  def set_reference
+    self.reference = false if self.reference.nil?
+  end
   
   def update_timestamp
     self.updated_at = Time.now
