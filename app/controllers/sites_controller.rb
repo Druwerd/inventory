@@ -5,13 +5,9 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.xml
   def index
-    @sites = Site.all(:reference => false, :order => 'name')
-    @reference_sites = Site.all(:reference => true, :order => 'name')
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.xml  { render :xml => @sites }
-      format.json { render :json => @sites }
-    end
+    @sites = Site.where(:reference => false, :page_rank.gt => -1).sort(:name).all
+    @reference_sites = Site.where(:reference => true).sort(:name).all
+    respond_with(@sites)
   end
 
   # GET /sites/1

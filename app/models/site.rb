@@ -2,8 +2,8 @@ class Site
   include MongoMapper::Document
   
   key :name, String, :unique => true, :required => true
-  key :page_rank, String
-  key :load_time, String
+  key :page_rank, Integer
+  key :load_time, Float
   key :updated_at, Time
   key :reference, Boolean
   
