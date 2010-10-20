@@ -55,7 +55,7 @@ div.field, div.actions {
   list-style: square;
 }
 
-table{
+table.sites, table.servers, table.agents, table.classes, table.facts{
 	border: 1px solid;
 }
 

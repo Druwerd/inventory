@@ -8,6 +8,10 @@ class ServersController < ApplicationController
   def index
     respond_with(@servers = Server.all(:order => 'fqdn'))
   end
+  
+  def virtual_servers
+    @servers = Server.where(:facts)
+  end
 
   # GET /servers/1
   # GET /servers/1.xml

@@ -1,5 +1,6 @@
 class Server
   include MongoMapper::Document
+  set_collection_name 'nodes'
   
   key :fqdn, String, :unique => true, :required => true
   
@@ -12,6 +13,10 @@ class Server
       server = create(params)
     end
     server
+  end
+  
+  def last_updated
+    Time.at(self.lastseen)
   end
 
 end

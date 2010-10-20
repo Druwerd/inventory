@@ -1,7 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @server.fqdn %></h2>
-<%=raw display_attributes(@server) %>
+<h1><%= @server.fqdn %></h1>
+Last updated: <%= @server.last_updated.to_s(:db) %>
+
+<h2>Agent List</h2>
+<table class="agents">
+<% @server.agentlist.sort.each do |agent| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= agent %></td>
+  </tr>
+<% end %>
+<% reset_cycle() %>
+</table>
+
+<h2>Classes</h2>
+<table class="classes">
+<% @server.classes.sort.each do |class_name| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= class_name %></td>
+  </tr>
+<% end %>
+<% reset_cycle() %>
+</table>
+
+<h2>Facts</h2>
+<table class="facts">
+<% @server.facts.sort.each do |key, value| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><b><%= key %>:</b></td>
+    <td><%= value %></td>
+  </tr>
+<% end %> 
+</table>
 
 <%= link_to 'Edit', edit_server_path(@server) %> |
 <%= link_to 'Back', servers_path %>

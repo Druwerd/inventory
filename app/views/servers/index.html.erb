@@ -1,16 +1,19 @@
-<h1>Listing servers</h1>
+<h1>Servers</h1>
+<%= link_to 'New Server', new_server_path %>
 
-<table>
+<table class="servers">
   <tr>
     <th>Name</th>
+	<th>Last Updated</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @servers.each do |server| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd") %>">
     <td><%= server.fqdn %></td>
+	<td><%= server.last_updated.strftime("%Y-%m-%d") %></td>
     <td><%= link_to 'Show', server %></td>
     <td><%= link_to 'Edit', edit_server_path(server) %></td>
     <td><%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -18,6 +21,3 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Server', new_server_path %>
