@@ -6,11 +6,24 @@ class ServersController < ApplicationController
   # GET /servers
   # GET /servers.xml
   def index
+    @title = "All Servers"
     respond_with(@servers = Server.all(:order => 'fqdn'))
   end
   
   def virtual_servers
-    @servers = Server.where(:facts)
+    @title = "Virtual Servers"
+    @servers = Server.where( "facts.virtual" => "xenu").sort(:fqdn).all
+    respond_with(@servers) do |format|
+      format.html { render :action => 'index' }
+    end
+  end
+  
+  def physical_servers
+    @title = "Physical Servers"
+    @servers = Server.where( "facts.virtual" => "xen0").sort(:fqdn).all
+    respond_with(@servers) do |format|
+      format.html { render :action => 'index' }
+    end
   end
 
   # GET /servers/1
@@ -55,6 +68,15 @@ class ServersController < ApplicationController
       format.html { redirect_to(servers_url) }
       format.xml  { head :ok }
       format.json { head :ok }
+    end
+  end
+  
+  # POST /servers/search
+  def search
+    @title = "Search Results"
+    @servers = Server.search(params[:search])
+    respond_with(@servers) do |format|
+      format.html { render :action => 'index' }
     end
   end
 end

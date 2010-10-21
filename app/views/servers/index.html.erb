@@ -1,4 +1,10 @@
-<h1>Servers</h1>
+<h1><%= @title %> (<%= @servers.size %>)</h1>
+
+<%= form_tag('servers_search') do %>
+	<%= text_field_tag('search') %>
+	<%= submit_tag('Search') %>
+<% end %>
+
 <%= link_to 'New Server', new_server_path %>
 
 <table class="servers">
