@@ -9,6 +9,10 @@ Inventory system for tracking computer systems.
 
 2. Rails 3 - http://rubyonrails.org/
 
+3. puppet - http://www.puppetlabs.com/
+
+4. mcollective - http://code.google.com/p/mcollective/
+
 
 == Getting Started
 
