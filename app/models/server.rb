@@ -14,7 +14,7 @@ class Server
     elsif search_params.include?("class=")
       search_by_class(search_params)
     else
-      serach_by_hostname(search_params)
+      search_by_hostname(search_params)
     end
   end
   
@@ -29,7 +29,7 @@ class Server
     Server.where("classes" => class_name.strip).sort(:fqdn).all
   end
   
-  def self.serach_by_hostname(search_params)
+  def self.search_by_hostname(search_params)
     Server.where("fqdn" => /.*#{search_params}.*/).sort(:fqdn).all
   end
 
