@@ -1,0 +1,6 @@
+
+development:
+    host: localhost
+    port: 27017
+    database: puppet
+    
