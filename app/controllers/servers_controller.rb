@@ -7,12 +7,13 @@ class ServersController < ApplicationController
   # GET /servers.xml
   def index
     @title = "All Servers"
-    respond_with(@servers = Server.all(:order => 'fqdn'))
+    @servers = Server.fields("fqdn", "lastseen").sort(:fqdn).all
+    respond_with(@servers)
   end
   
   def virtual_servers
     @title = "Virtual Servers"
-    @servers = Server.where( "facts.virtual" => "xenu").sort(:fqdn).all
+    @servers = Server.where( "facts.virtual" => "xenu").fields("fqdn", "lastseen").sort(:fqdn).all
     respond_with(@servers) do |format|
       format.html { render :action => 'index' }
     end
@@ -20,7 +21,7 @@ class ServersController < ApplicationController
   
   def physical_servers
     @title = "Physical Servers"
-    @servers = Server.where( "facts.virtual" => "xen0").sort(:fqdn).all
+    @servers = Server.where( "facts.virtual" => "xen0").fields("fqdn", "lastseen").sort(:fqdn).all
     respond_with(@servers) do |format|
       format.html { render :action => 'index' }
     end
